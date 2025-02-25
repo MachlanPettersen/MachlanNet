@@ -1,7 +1,7 @@
 {
   "name": "machlannet",
   "homepage": "https://machlan.net",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
