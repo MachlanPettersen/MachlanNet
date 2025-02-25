@@ -14,7 +14,6 @@ const Container = styled.div`
   text-align: center;
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text.primary};
-  position: relative;
   overflow: hidden;
 `;
 
@@ -39,6 +38,7 @@ const HeroSection = styled.main`
   max-width: 800px;
   padding: 0 20px;
   z-index: 2;
+  position: fixed;
 `;
 
 const StyledIcon = styled.img`
@@ -115,7 +115,6 @@ const UnderConstruction: React.FC = () => {
 
   return (
     <Container>
-      <Navbar />
       <ContentWrapper>
         <HeroSection>
           <StyledIcon src={HardhatIcon} alt="Construction Icon" />

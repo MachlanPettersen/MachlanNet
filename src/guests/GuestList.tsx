@@ -14,7 +14,7 @@ const Container = styled.div`
   align-items: center;
   gap: 2rem;
   padding: 2rem;
-  min-height: 100vh;
+  overflow: auto;
 `;
 
 const Title = styled.h1`

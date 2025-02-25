@@ -19,9 +19,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   gap: 1.5rem;
   padding: 2rem;
+  overflow: auto;
 `;
 
 const Title = styled.h1`

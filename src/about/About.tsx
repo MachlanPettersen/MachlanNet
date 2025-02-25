@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
-import {
-  Code,
-  Coffee,
-  Guitar,
-  Lightbulb,
-  Mountains,
-  RocketLaunch,
-} from "@phosphor-icons/react";
+import { Code, Laptop, Leaf, Coffee } from "@phosphor-icons/react";
 import { useInView } from "react-intersection-observer";
 import BackButton from "../common/BackButton";
 
@@ -17,13 +10,13 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text.primary};
   padding: 6rem 2rem;
+  overflow: auto;
 `;
 
 const ContentWrapper = styled.div`
@@ -61,15 +54,6 @@ const Subtitle = styled.p`
   color: ${(props) => props.theme.text.secondary};
   margin: 1rem 0 0 0;
   font-weight: 300;
-`;
-
-const QuoteBlock = styled.blockquote`
-  font-size: 1.25rem;
-  font-style: italic;
-  color: ${(props) => props.theme.text.accent};
-  margin: 2rem 0;
-  padding: 0 2rem;
-  border-left: 4px solid ${(props) => props.theme.accent.green.main};
 `;
 
 const Grid = styled.div`
@@ -115,6 +99,16 @@ const Paragraph = styled.p`
   margin: 0 0 1.5rem 0;
 `;
 
+const StyledLink = styled.a`
+  color: inherit;
+  text-decoration: underline;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
 interface PassionCardProps {
   title: string;
   content: string;
@@ -141,84 +135,95 @@ const PassionCard: React.FC<PassionCardProps> = ({ title, icon, content }) => {
 const About: React.FC = () => {
   return (
     <Container>
-      <BackButton />
       <ContentWrapper>
         <Hero delay={0}>
-          <Title>Hey, I'm Machlan</Title>
-          <Subtitle>
-            Software engineer, musician, and perpetual learner
-          </Subtitle>
-          <QuoteBlock>
-            "The only way to do great work is to love what you do." - Steve Jobs
-          </QuoteBlock>
+          <Title>What I'm up to</Title>
+          <Subtitle>And why I'm doing it</Subtitle>
         </Hero>
 
         <Section delay={0.2}>
           <Paragraph>
-            I'm a software engineer with a passion for building things that make
-            a difference. Currently crafting digital experiences and solving
-            interesting problems in the tech world. When I'm not coding, you'll
-            find me playing guitar, hiking trails, or diving into a new side
-            project.
+            I'm a software engineer specializing in mobile and web development.
+            My work primarily focuses on building applications with React.js and
+            SwiftUI, from refactoring legacy codebases to architecting new
+            solutions from the ground up. I've been working at{" "}
+            <StyledLink
+              href="https://everlightsolar.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Everlight Solar
+            </StyledLink>{" "}
+            since April of 2024.
           </Paragraph>
           <Paragraph>
-            My journey in tech started with curiosity about how things work,
-            leading me through various roles and projects that have shaped my
-            perspective on building software that matters. I believe in writing
-            clean code, creating intuitive user experiences, and always learning
-            from those around me.
+            My B.S. in mechanical engineering from the University of Vermont
+            lends me a solid foundation in problem-solving and technical
+            communication. As a self-taught programmer I lean on my engineering
+            background, eye for detail, and open mind to solve intricate
+            problems and design enterprise-scale systems.
           </Paragraph>
         </Section>
 
         <Section delay={0.4}>
-          <h2>What Drives Me</h2>
+          <h2>Professional Focus</h2>
           <Grid>
             <PassionCard
               icon={<Code size={24} />}
-              title="Clean Code"
-              content="I believe in writing maintainable, efficient code that solves real problems. Every line should have a purpose."
+              title="Development"
+              content="As a web and mobile developer, I specialize in React.js, Swift, and React Native. I focus on building clean, efficient, and scalable applications that always prioritize the end"
             />
             <PassionCard
-              icon={<Lightbulb size={24} />}
-              title="Innovation"
-              content="Always exploring new technologies and approaches to build better solutions."
+              icon={<Leaf size={24} />}
+              title="Renewable Energy"
+              content="My sole inspiration to become an engineer in the first place. I strongly believe that dedication is the difference between being good and being great, and I've found my passion for engineering in renewables."
             />
+
             <PassionCard
-              icon={<Guitar size={24} />}
-              title="Creativity"
-              content="Whether it's music or code, I'm passionate about creating things that resonate with people."
+              icon={<Laptop size={24} />}
+              title="Elegant Architecture"
+              content="Software should be as intuitive to maintain as it is to use. I aim for architecture that is clean, efficient, and thoughtfully designed for long-term success."
             />
-            <PassionCard
-              icon={<Mountains size={24} />}
-              title="Growth"
-              content="Every challenge is an opportunity to learn and improve. The journey never ends."
-            />
+
             <PassionCard
               icon={<Coffee size={24} />}
-              title="Community"
-              content="Building connections and sharing knowledge with fellow developers and creators."
-            />
-            <PassionCard
-              icon={<RocketLaunch size={24} />}
-              title="Impact"
-              content="Focused on creating technology that makes a positive difference in people's lives."
+              title="Collaboration"
+              content="Great software isn't built in isolation. Working closely with leadership, designers, and backend engineers, I help shape products that truly reflect collective creativity and expertise."
             />
           </Grid>
         </Section>
-
-        <Section delay={0.6}>
-          <h2>Beyond the Code</h2>
+        <Section delay={0.8}>
+          <h2>Background</h2>
           <Paragraph>
-            When I'm not immersed in code, I'm probably working on music,
-            exploring nature, or tinkering with a new project. I believe that
-            these diverse interests make me a better developer - they bring
-            fresh perspectives and creative approaches to problem-solving.
+            I grew up in Vermont- surrounded by mountains, forests, and the best
+            rivers on the face of the earth. That kind of setting makes you
+            appreciate the planet early on, and paired with the wisdom of some
+            people that I look up to, it sparked a passion for renewable energy
+            and environmental protection.
           </Paragraph>
           <Paragraph>
-            I'm always open to connecting with fellow developers, creators, and
-            anyone passionate about technology and its potential to create
-            positive change. Feel free to reach out through any of the channels
-            in the contact section!
+            <Paragraph>
+              My path into software development started at UVM during a co-op
+              program, where I built an iOS app to track energy usage for{" "}
+              <StyledLink
+                href="https://qor360.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                QOR360
+              </StyledLink>
+              . Along the way, I’ve learned from a couple great mentors who've
+              helped me bridge the gap between mechanical engineering and
+              strong, maintainable software systems. Now, I'm doing work that I
+              love for a cause and company that I believe in.
+            </Paragraph>
+          </Paragraph>
+          <Paragraph>
+            When I'm not in VSCode, I'm usually experimenting in the kitchen,
+            playing guitar, shooting a round of disc golf, or spending time with
+            the people I love. Maybe I'm even listening to some music! Return to
+            the home page to see if I have anything playing on Spotify at the
+            moment.
           </Paragraph>
         </Section>
       </ContentWrapper>

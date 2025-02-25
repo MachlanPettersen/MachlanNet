@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   LinkedinLogo,
   GithubLogo,
@@ -8,8 +8,13 @@ import {
   Check,
 } from "@phosphor-icons/react";
 
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Container = styled.div`
-  min-height: 100vh;
+  height: 100vh-48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,10 +31,10 @@ const ContentWrapper = styled.div`
   gap: 3rem;
 `;
 
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+const Section = styled.div<{ delay: number }>`
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease-out forwards;
+  animation-delay: ${(props) => props.delay}s;
 `;
 
 const Title = styled.h1`
@@ -51,7 +56,10 @@ const Subtitle = styled.p`
   max-width: 600px;
 `;
 
-const ContactMethods = styled.div`
+const ContactMethods = styled.div<{ delay: number }>`
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease-out forwards;
+  animation-delay: ${(props) => props.delay}s;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -122,12 +130,12 @@ const Contact = () => {
   return (
     <Container>
       <ContentWrapper>
-        <Section>
+        <Section delay={0}>
           <Title>Let's get down to brass tacks</Title>
           <Subtitle>Here's how to reach me.</Subtitle>
         </Section>
 
-        <ContactMethods>
+        <ContactMethods delay={0.2}>
           <EmailContainer>
             <EnvelopeSimple size={24} weight="bold" />
             <EmailButton onClick={handleCopyEmail}>

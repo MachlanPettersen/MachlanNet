@@ -15,6 +15,7 @@ const Container = styled.div`
   color: ${(props) => props.theme.text.primary};
   position: relative;
   overflow: hidden;
+  flex: 1;
 `;
 
 const ContentWrapper = styled.div`
@@ -38,6 +39,7 @@ const HeroSection = styled.main`
   max-width: 800px;
   padding: 0 20px;
   z-index: 2;
+  position: fixed;
 `;
 
 const Title = styled.h1`

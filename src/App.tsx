@@ -1,16 +1,15 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { useLocation, BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { themes } from "./common/Theme/Colors";
 import { ThemeContext } from "./common/Theme/ThemeContext";
-import ThemeToggle from "./common/Theme/ThemeToggle";
-import BackButton from "./common/BackButton";
 import Home from "./home/Home";
 import GuestBook from "./guests/GuestBook";
 import UnderConstruction from "./common/UnderConstruction";
 import Contact from "./contact/Contact";
 import About from "./about/About";
+import HeaderControls from "./navigation/HeaderControls";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
   }
-
   body {
     margin: 0;
     padding: 0;
@@ -27,7 +25,28 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.text.primary};
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  html, body {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
+`;
+
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+`;
+
+const PageContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
 const queryClient = new QueryClient({
@@ -41,7 +60,6 @@ const queryClient = new QueryClient({
 });
 
 const AppContent = () => {
-  const location = useLocation();
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("isDarkTheme");
     return saved ? JSON.parse(saved) : false;
@@ -57,22 +75,23 @@ const AppContent = () => {
     localStorage.setItem("isDarkTheme", JSON.stringify(isDark));
   }, [isDark]);
 
-  const showBackButton = location.pathname !== "/";
-
   return (
     <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {showBackButton && <BackButton />}
-        <ThemeToggle />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<UnderConstruction />} />
-          <Route path="/projects" element={<UnderConstruction />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/guestbook" element={<GuestBook />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Layout>
+          <HeaderControls />
+          <PageContainer>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<UnderConstruction />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/guestbook" element={<GuestBook />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </PageContainer>
+        </Layout>
       </ThemeProvider>
     </ThemeContext.Provider>
   );
