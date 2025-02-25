@@ -171,7 +171,7 @@ const About: React.FC = () => {
             <PassionCard
               icon={<Code size={24} />}
               title="Development"
-              content="As a web and mobile developer, I specialize in React.js, Swift, and React Native. I focus on building clean, efficient, and scalable applications that always prioritize the end user"
+              content="As a web and mobile developer, I specialize in React.js, Swift, and React Native. I focus on building clean, efficient, and scalable applications that always prioritize the end user."
             />
             <PassionCard
               icon={<Leaf size={24} />}
