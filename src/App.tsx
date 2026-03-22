@@ -6,7 +6,7 @@ import { themes } from "./common/Theme/Colors";
 import { ThemeContext } from "./common/Theme/ThemeContext";
 import Home from "./home/Home";
 import GuestBook from "./guests/GuestBook";
-import UnderConstruction from "./common/UnderConstruction";
+import Projects from "./projects/Projects";
 import Contact from "./contact/Contact";
 import About from "./about/About";
 import HeaderControls from "./navigation/HeaderControls";
@@ -85,7 +85,7 @@ const AppContent = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<UnderConstruction />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/guestbook" element={<GuestBook />} />
               <Route path="*" element={<Home />} />
