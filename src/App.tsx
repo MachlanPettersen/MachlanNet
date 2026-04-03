@@ -8,6 +8,7 @@ import Home from "./home/Home";
 import GuestBook from "./guests/GuestBook";
 import Projects from "./projects/Projects";
 import Planet from "./projects/Planet";
+import WaterwheelPage from "./projects/WaterwheelPage";
 import Contact from "./contact/Contact";
 import About from "./about/About";
 import HeaderControls from "./navigation/HeaderControls";
@@ -88,6 +89,7 @@ const AppContent = () => {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/planet" element={<Planet />} />
+              <Route path="/projects/waterwheel" element={<WaterwheelPage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/guestbook" element={<GuestBook />} />
               <Route path="*" element={<Home />} />
